@@ -19,7 +19,7 @@ flowchart TD
   BAT_SW["Batt Selector Switch (1/2/All/Off)"]
   DC_DC["40A DC-DC Charger"]
   LFP["300Ah LiFePO₄"]
-  DC_MAIN["DC Main Switch"]
+  DC_MAIN["DC Panel Main Breaker"]
 
   %% === Middle Right: AC Control ===
   ATS1["Factory ATS: Shore 1 & 2 vs Genset"]
@@ -29,7 +29,7 @@ flowchart TD
   INV["2000W Inverter"]
 
   %% === Bottom: Load Panels ===
-  PANEL1["Shore 1 AC Panel"]
+  PANEL1["Shore 1 Panel (30A SLA Charger Excluded)"]
   PANEL2["Shore 2 AC Panel"]
   SLA_CHG["30A SLA Charger"]
 
@@ -40,8 +40,8 @@ flowchart TD
   LFP --> INV
   LFP --> DC_MAIN
 
-  %% SLA Charger: FROM Shore 1 Panel TO Start Batteries
-  PANEL1 --> SLA_CHG
+  %% SLA Charger: FROM ATS1 (Shore/Genset Only) TO Start Batteries
+  ATS1 --> SLA_CHG
   SLA_CHG --> START1
   SLA_CHG --> START2
 
@@ -59,8 +59,5 @@ flowchart TD
   classDef ac fill:#223c63,color:#ffffff,stroke:#bbbbbb;
   class START1,START2,BAT_SW,DC_DC,LFP,DC_MAIN dc;
   class SP1,SP2,GEN,ATS1,ATS2,PANEL1,PANEL2,SLA_CHG,INV ac;
-
-
-
 
 ```
